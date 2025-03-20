@@ -6,4 +6,4 @@ RUN npm install n8n-nodes-mcp
 
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 
-CMD ["n8n", "start"]
+CMD ["./node_modules/.bin/n8n", "start"]
