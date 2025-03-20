@@ -6,4 +6,4 @@ RUN npm install --prefix /data n8n-nodes-mcp
 
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 
-CMD ["/usr/local/bin/n8n", "start"]
+CMD ["n8n", "start"]
