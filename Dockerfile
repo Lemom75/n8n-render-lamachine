@@ -1,15 +1,13 @@
 FROM n8nio/n8n:latest
 
+# Set the working directory
 WORKDIR /data
 
-# ✅ Force install n8n globally (in case Render strips it)
-RUN npm install -g n8n
-
-# ✅ Install your MCP community node locally
+# ✅ Install the MCP community node LOCALLY (no -g, avoids permission issues)
 RUN npm install --prefix /data n8n-nodes-mcp
 
-# ✅ Enable Community Nodes
+# ✅ Enable community nodes
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 
-# ✅ Start n8n using the global installation
+# ✅ Run n8n - already installed globally in the official image PATH
 CMD ["n8n", "start"]
