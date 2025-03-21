@@ -1,13 +1,13 @@
 FROM n8nio/n8n:latest
 
-# Set the working directory
+# On place le WORKDIR sur /data (bonne pratique pour n8n)
 WORKDIR /data
 
-# ✅ Install the MCP community node LOCALLY (no -g, avoids permission issues)
+# Installation du node communautaire MCP (sans -g)
 RUN npm install --prefix /data n8n-nodes-mcp
 
-# ✅ Enable community nodes
+# Active les Community Nodes
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 
-# ✅ Run n8n - already installed globally in the official image PATH
+# On lance n8n (déjà présent globalement dans l’image)
 CMD ["n8n", "start"]
