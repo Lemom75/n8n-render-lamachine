@@ -1,4 +1,4 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:1.91.3
 
 # Set the WORKDIR to /data (best practice for n8n)
 WORKDIR /data
