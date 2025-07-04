@@ -11,25 +11,15 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        fromDatabase:
-          name: n8nDB
-          property: host
+        value: db.uuugziikkmtpnwjfodcv.supabase.co
       - key: DB_POSTGRESDB_DATABASE
-        fromDatabase:
-          name: n8nDB
-          property: database
+        value: postgres
       - key: DB_POSTGRESDB_PORT
-        fromDatabase:
-          name: n8nDB
-          property: port
+        value: 5432
       - key: DB_POSTGRESDB_USER
-        fromDatabase:
-          name: n8nDB
-          property: user
+        value: postgres
       - key: DB_POSTGRESDB_PASSWORD
-        fromDatabase:
-          name: n8nDB
-          property: password
+        value: qX$bQLP@6ERhiP_
       - key: PORT
         value: 5678
       - key: N8N_LOG_LEVEL
@@ -42,6 +32,8 @@ services:
         value: fr
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+
+# Section databases supprimée car on utilise Supabase maintenant
 
 databases:
   - name: n8nDB
