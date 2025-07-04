@@ -11,15 +11,15 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        value: db.uuugziikkmtpnwjfodcv.supabase.co
+        value: aws-0-eu-central-1.pooler.supabase.com
       - key: DB_POSTGRESDB_DATABASE
         value: postgres
       - key: DB_POSTGRESDB_PORT
         value: 5432
       - key: DB_POSTGRESDB_USER
-        value: postgres
+        value: postgres.uuugziikkmtpnwjfodcv
       - key: DB_POSTGRESDB_PASSWORD
-        value: qX$bQLP@6ERhiP_
+        value: R8netNxSHhUSMbeK
       - key: PORT
         value: 5678
       - key: N8N_LOG_LEVEL
@@ -32,10 +32,3 @@ services:
         value: fr
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-
-# Section databases supprimée car on utilise Supabase maintenant
-
-databases:
-  - name: n8nDB
-    region: frankfurt # optional (defaults to oregon)
-    plan: free
