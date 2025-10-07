@@ -1,7 +1,7 @@
 # --- Base image ---
 FROM n8nio/n8n:1.114.3
 
-# --- Set working directory (best practice for n8n) ---
+# --- Set working directory ---
 WORKDIR /data
 
 # --- Install the community node MCP ---
@@ -16,5 +16,5 @@ RUN chmod 600 /home/node/.n8n/config || true
 # --- Enforce correct permissions (optional but clean) ---
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# --- Start n8n ---
-CMD n8n start
+# --- Start n8n (direct execution, no shell) ---
+CMD ["n8n", "start"]
