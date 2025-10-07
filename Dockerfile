@@ -7,7 +7,4 @@ USER root
 RUN npm install -g n8n-nodes-mcp
 USER node
 
-WORKDIR /home/node
-
-# Utiliser le chemin complet vers l'exécutable n8n
-CMD ["node", "/usr/local/bin/n8n"]
+# Ne pas redéfinir WORKDIR ni CMD, utiliser ceux de l'image de base
