@@ -45,6 +45,15 @@ services:
       
       - key: N8N_PROTOCOL
         value: https
+
+      - key: N8N_RUNNERS_ENABLED
+        value: "true"
+  
+      - key: N8N_BLOCK_ENV_ACCESS_IN_NODE
+        value: "false"
+  
+      - key: N8N_GIT_NODE_DISABLE_BARE_REPOS
+        value: "true"
       
       # Webhook URL - Remplace par ton URL Render
       - key: WEBHOOK_URL
