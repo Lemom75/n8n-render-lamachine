@@ -13,5 +13,8 @@ ENV N8N_COMMUNITY_NODES_ENABLED=true
 # --- Fix permissions for the n8n settings file (ignore if missing) ---
 RUN chmod 600 /home/node/.n8n/config || true
 
-# --- Start n8n via shell (ensures PATH is loaded) ---
-CMD ["sh", "-c", "n8n start"]
+# --- Enforce correct permissions (optional but clean) ---
+ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+
+# --- Start n8n ---
+CMD n8n start
