@@ -19,5 +19,5 @@ USER node
 # --- Reset to default working directory from base image ---
 WORKDIR /home/node
 
-# --- Start n8n ---
-CMD ["n8n", "start"]
+# --- Use the exact same CMD as the base image (no arguments) ---
+CMD ["n8n"]
