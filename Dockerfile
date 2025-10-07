@@ -12,11 +12,13 @@ RUN npm install --prefix /data n8n-nodes-mcp
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# --- Fix permissions ---
+# --- Fix permissions (non bloquant) ---
 RUN chmod 600 /home/node/.n8n/config || true
 
-# --- Run as n8n user ---
-USER node
+# ⚠️ Ne redéfinis PAS CMD ici !
+# L'image de base possède déjà :
+#   USER node
+#   CMD ["tini", "--", "n8n"]
 
-# --- Default command ---
-CMD ["n8n", "start"]
+# Si tu veux forcer le user (optionnel mais safe)
+USER node
