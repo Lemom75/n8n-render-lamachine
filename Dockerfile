@@ -1,5 +1,5 @@
 # --- Base image paramétrable ---
-ARG N8N_VERSION=1.91.3
+ARG N8N_VERSION=1.114.3
 FROM n8nio/n8n:${N8N_VERSION}
 
 # --- Working directory ---
