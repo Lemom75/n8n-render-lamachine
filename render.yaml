@@ -2,33 +2,81 @@ services:
   - type: web
     name: n8n
     env: docker
-    region: frankfurt # optional (defaults to oregon)
-    plan: free # optional (defaults to starter)
-    branch: main # optional (defaults to master)
+    region: frankfurt
+    plan: free
+    branch: main
     numInstances: 1
     healthCheckPath: /healthz
+    
     envVars:
+      # === Base de données Supabase ===
       - key: DB_TYPE
         value: postgresdb
+      
       - key: DB_POSTGRESDB_HOST
         value: aws-0-eu-central-1.pooler.supabase.com
+      
       - key: DB_POSTGRESDB_DATABASE
         value: postgres
+      
       - key: DB_POSTGRESDB_PORT
         value: 5432
+      
+      # CREDENTIALS - À définir dans Render UI (sécurisé)
       - key: DB_POSTGRESDB_USER
-        value: postgres.uuugziikkmtpnwjfodcv
+        sync: false
+      
       - key: DB_POSTGRESDB_PASSWORD
-        value: R8netNxSHhUSMbeK
-      - key: PORT
+        sync: false
+      
+      # SSL pour Supabase
+      - key: DB_POSTGRESDB_SSL
+        value: "true"
+      
+      - key: DB_POSTGRESDB_SCHEMA
+        value: public
+      
+      # === Configuration n8n ===
+      - key: N8N_HOST
+        value: 0.0.0.0
+      
+      - key: N8N_PORT
         value: 5678
-      - key: N8N_LOG_LEVEL
-        value: info
-      - key: GENERIC_TIMEZONE
-        value: Europe/Paris
-      - key: TZ
-        value: Europe/Paris
-      - key: N8N_DEFAULT_LOCALE
-        value: fr
+      
+      - key: N8N_PROTOCOL
+        value: https
+      
+      # Webhook URL - Remplace par ton URL Render
+      - key: WEBHOOK_URL
+        value: https://n8n-uv6j.onrender.com
+      
+      # Encryption key - Généré automatiquement
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+      
+      # === Localisation ===
+      - key: GENERIC_TIMEZONE
+        value: Europe/Paris
+      
+      - key: TZ
+        value: Europe/Paris
+      
+      - key: N8N_DEFAULT_LOCALE
+        value: fr
+      
+      # === Logs et performance ===
+      - key: N8N_LOG_LEVEL
+        value: info
+      
+      # Optimisation mémoire pour plan free
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=460
+      
+      # === Optionnel : Sécurité supplémentaire ===
+      # Décommente si tu veux protéger l'interface
+      # - key: N8N_BASIC_AUTH_ACTIVE
+      #   value: "true"
+      # - key: N8N_BASIC_AUTH_USER
+      #   sync: false
+      # - key: N8N_BASIC_AUTH_PASSWORD
+      #   sync: false
