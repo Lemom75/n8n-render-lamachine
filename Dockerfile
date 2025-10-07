@@ -1,20 +1,23 @@
 # --- Base image ---
 FROM n8nio/n8n:1.114.3
 
-# --- Set working directory ---
-WORKDIR /data
-
-# --- Install the community node MCP ---
-RUN npm install --prefix /data n8n-nodes-mcp
-
 # --- Enable Community Nodes ---
 ENV N8N_COMMUNITY_NODES_ENABLED=true
 
-# --- Fix permissions for the n8n settings file (ignore if missing) ---
-RUN chmod 600 /home/node/.n8n/config || true
-
-# --- Enforce correct permissions (optional but clean) ---
+# --- Enforce correct permissions ---
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# --- Start n8n (direct execution, no shell) ---
+# --- Switch to root temporarily for installation ---
+USER root
+
+# --- Install the community node MCP globally ---
+RUN npm install -g n8n-nodes-mcp
+
+# --- Switch back to node user ---
+USER node
+
+# --- Reset to default working directory from base image ---
+WORKDIR /home/node
+
+# --- Start n8n ---
 CMD ["n8n", "start"]
