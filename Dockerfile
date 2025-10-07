@@ -1,5 +1,5 @@
 # --- Base image ---
-FROM n8nio/n8n:1.91.3
+FROM n8nio/n8n:1.114.3
 
 # --- Set working directory (best practice for n8n) ---
 WORKDIR /data
